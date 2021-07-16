@@ -15,7 +15,7 @@ localhost:8000
 ### User profiles
 Super-User:
     user - RAH99
-    email - rah99@gmail.com
+    email - rah99@company.com
     password - admin321
 
 Non-Staff Users:
