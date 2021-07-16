@@ -8,6 +8,10 @@ Change directory to .../django-project
 ```
 python manage.py runserver
 ```
+### Accessed app via
+```
+localhost:8000
+```
 ### User profiles
 Super-User:
     user - RAH99
@@ -22,3 +26,7 @@ Non-Staff Users:
 ```
 Emails are stored in the folder: django_project/emails
 ```
+### Accessing Admin
+```
+http://localhost:8000/admin/
+``` 
