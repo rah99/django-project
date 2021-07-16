@@ -16,6 +16,10 @@ python manage.py runserver YOUR-PORT-NUMBER
 ```
 localhost:8000
 ```
+#### - or -
+```
+localhost:YOUR-PORT-NUMBER
+```
 ### User profiles
 Super-User:
     user - RAH99
