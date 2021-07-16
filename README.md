@@ -8,6 +8,10 @@ Change directory to .../django-project
 ```
 python manage.py runserver
 ```
+#### Alternatively change the port by
+```
+python manage.py runserver YOUR-PORT-NUMBER
+``` 
 ### Accessed app via
 ```
 localhost:8000
