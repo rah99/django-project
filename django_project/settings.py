@@ -154,9 +154,9 @@ LOGIN_URL = "login"
 # EMAIL_USE_SSL = True
 # DEFAULT_FROM_EMAIL = os.getenv("EMAIL_USER_VM")
 
-# Use for posting email to folder "emails"
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-EMAIL_FILE_PATH = BASE_DIR / "emails"
+# # Use for posting email to folder "emails"
+# EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+# EMAIL_FILE_PATH = BASE_DIR / "emails"
 
 # # Use for posting email to console
 # EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
@@ -165,17 +165,17 @@ EMAIL_FILE_PATH = BASE_DIR / "emails"
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
-# # SendGrid
-# SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
+# SendGrid
+SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
 
-# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-# EMAIL_HOST = "smtp.sendgrid.net"
-# EMAIL_HOST_USER = "apikey"
-# EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# # DEFAULT_FROM_EMAIL = os.getenv("EMAIL_USER_VM")  # Virgin Media
-# DEFAULT_FROM_EMAIL = os.getenv("EMAIL_USER")  # G-Mail
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.sendgrid.net"
+EMAIL_HOST_USER = "apikey"
+EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+# DEFAULT_FROM_EMAIL = os.getenv("EMAIL_USER_VM")  # Virgin Media
+DEFAULT_FROM_EMAIL = os.getenv("EMAIL_USER")  # G-Mail
 
 # # SendInBlue
 # EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
