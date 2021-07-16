@@ -1,0 +1,132 @@
+# Information re django found here https://docs.djangoproject.com/en/3.2
+
+Super-User:
+    user - RAH99
+    email - rah99@gmail.com
+    password - admin123
+
+Non-Staff Users:
+    user - TestUser
+    email - testuser@company.com
+    password - testing321
+
+Find users on cmd line (terminal) *****note: use 'ctrl+#' to clean up terminal window*****:
+1. python manage.py shell
+"at prompt enter":
+    >>> from blog.models import Post        
+    >>> from django.contrib.auth.models import User
+    >>> User.objects.all() # Shows all users
+    >>> User.objects.first() # Shows first user
+    >>> User.objects.filter(username='RAH99') # Shows selected user if registered
+    >>> User.objects.filter(username='RAH99').first() # Shows the first of the query set (in case multiples)
+
+    Capture user as a variable:
+        >>> user = User.objects.filter(username='RAH99').first()
+        Enables interrogation of the object:
+            >>> user.id
+            1
+            >>> user.pk
+            1
+            >>> user = User.objects.get(id=1)
+            >>> user
+            <User: RAH99>
+        Create a db entry using user variable in terminal:
+            >>> Post.objects.all()
+            <QuerySet []>
+            >>> post_1 = Post()
+            >>> post_1 = Post(title='Blog 1', content='First post content!', author=user)  
+            >>> Post.objects.all() # Check the entry
+            <QuerySet []> # Does not show as it needs to be saved to the db - as below
+            >>> post_1.save()
+            >>> Post.objects.all()
+            <QuerySet [<Post: Post object (1)>]>
+        # Restart the terminal session (go back to the top and use the shell command and instantiate the objects)
+            >>> Post.objects.all()
+            <QuerySet [<Post: Blog 1>]>
+            >>> user = User.objects.filter(username='RAH99').first()
+            >>> user
+            <User: RAH99>
+            >>> post_2 = Post(title='Blog 2', content='Second post content!', author_id=user.id) # Showing how to use the user id
+            >>> post_2.save()
+            >>> Post.objects.all()
+            <QuerySet [<Post: Blog 1>, <Post: Blog 2>]>
+        # Get information from the blog post objects
+            >>> post = Post.objects.first()
+            >>> post.content
+            'First post content!'
+            >>> post.date_posted
+            datetime.datetime(2021, 6, 5, 14, 9, 22, 885420, tzinfo=<UTC>)
+            >>> post.author
+            <User: RAH99>
+            >>> post.author.email
+            'rah99@gmail.com'
+        # Get details about user posts (django uses a 'set' to define this)
+            >>> user.post_set
+            <django.db.models.fields.related_descriptors.create_reverse_many_to_one_manager.<locals>.RelatedManager object at 0x0000021391649C70>
+            >>> user.post_set.all()
+            <QuerySet [<Post: Blog 1>, <Post: Blog 2>]>
+        # Create a blog post using django set - do not need to save the post as it is automatically done
+            >>> user.post_set.create(title='Blog 3', content='Third poast content!')
+            <Post: Blog 3>
+            >>> Post.objects.all()
+            <QuerySet [<Post: Blog 1>, <Post: Blog 2>, <Post: Blog 3>]>
+
+User profile
+    (django_env) PS E:\Documents\GitHub\Django Frameworks\django_project> python manage.py shell
+    Python 3.9.5 (tags/v3.9.5:0a7dcbd, May  3 2021, 17:27:52) [MSC v.1928 64 bit (AMD64)] on win32
+    Type "help", "copyright", "credits" or "license" for more information.
+    (InteractiveConsole)
+    >>> from django.contrib.auth.models import User
+    >>> user = User.objects.filter(username='RAH99').first()
+    >>> user
+    <User: RAH99>
+    >>> user.profile
+    <Profile: RAH99 Profile>
+    >>> user.profile.image
+    <ImageFieldFile: profile_pics/Manager.PNG>
+    >>> user.profile.image.width
+    359
+    >>> user.profile.image.url  
+    '/profile_pics/Manager.PNG'
+    >>> user = User.objects.filter(username='NewUser').first() 
+    >>> user.profile.image       
+    <ImageFieldFile: default.jpg>
+
+Import JSON if any errors check user id's
+    >>> import json
+    >>> from blog.models import Post
+    >>> with open('posts.json') as f:
+    ...  posts_json = json.load(f)
+    ... 
+    >>> for post in posts_json:
+    ...  post = Post(title=post['title'], content=post['content'], author_id=post['user_id'])
+    ...  post.save()
+    ...
+    >>> exit()
+
+Using django pagination
+    >>> from django.core.paginator import Paginator
+    >>> posts = ['1', '2', '3', '4', '5']
+    >>> p = Paginator(posts, 2)
+    >>> p.num_pages
+    3
+    >>> for page in p.page_range:  
+    ...  print(page)
+    ... 
+    1
+    2
+    3
+    >>> p1 = p.page(1)
+    >>> p1
+    <Page 1 of 3>
+    >>> p1.number
+    1
+    >>> p1.object_list
+    ['1', '2']
+    >>> p1.has_previous()
+    False
+    >>> p1.has_next()
+    True
+    >>> p1.next_page_number()
+    2
+    >>>

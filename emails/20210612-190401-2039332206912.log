@@ -1,0 +1,26 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on localhost:8000
+From: webmaster@localhost
+To: rah99.bth@gmail.com
+Date: Sat, 12 Jun 2021 18:04:01 -0000
+Message-ID: <162352104164.10392.10400145552450226522@DESKTOP-B2L53T6.cable
+ virginm net>
+
+
+You're receiving this email because you requested a password reset for your user account at localhost:8000.
+
+Please go to the following page and choose a new password:
+
+http://localhost:8000/password-reset-confirm/MQ/ao58yp-4c2b2e2caa74621c313a0a59ef3f0eb1/
+
+Your username, in case you’ve forgotten: RAH99
+
+Thanks for using our site!
+
+The localhost:8000 team
+
+
+
+-------------------------------------------------------------------------------
