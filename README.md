@@ -4,3 +4,7 @@
 ```
 Change directory to .../django-project
 ```
+### Start server
+```
+python manage.py run server
+```
